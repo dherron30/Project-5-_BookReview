@@ -1,0 +1,73 @@
+<%- include("partials/header.ejs") %>
+
+<main>
+  <div class="container">
+    <h1 class="blog-title">Book Reviews</h1>
+
+    <!-- New Book Form -->
+    <form id="newPostForm" action="/books" method="POST">
+      <input type="text" name="title" placeholder="Title" required />
+      <input type="text" name="author" placeholder="Author" required />
+      <input type="date" name="date_read" required />
+      <input type="number" name="rating" placeholder="Rating (1-10)" required min="1" max="10" />
+      <textarea name="description" placeholder="Write what the book is about..." required></textarea>
+      <textarea name="review" placeholder="Write your review here..." required></textarea>
+      <button type="submit">Post Review</button>
+
+      <!-- Message shown after posting -->
+  <% posts.forEach(book => { %>
+      <div class="review">
+        <h2><%= book.title %></h2>
+        <p><strong>Author:</strong> <%= book.author %></p>
+        <p><%= book.description %></p>
+        <p><%= book.review %></p>
+        <p><strong>Rating:</strong> <%= book.rating %> / 10</p>
+        <p><strong>Date Read:</strong> <%= new Date(book.date_read).toDateString() %></p>
+  <% }); %>
+
+  </div>
+</main>
+
+<!-- ✅ JavaScript inserted here -->
+<script>
+  const form = document.getElementById('newPostForm');
+  const messageBox = document.getElementById('statusMessage');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    messageBox.textContent = "Posting your review...";
+    messageBox.style.color = "blue";
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const res = await fetch("/books", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        messageBox.textContent = "✅ Success! Your blog has been posted.";
+        messageBox.style.color = "green";
+        form.reset();
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      } else {
+        const errorData = await res.json();
+        messageBox.textContent = "❌ " + (errorData.error || "Failed to post.");
+        messageBox.style.color = "red";
+      }
+    } catch (err) {
+      console.error(err);
+      messageBox.textContent = "❌ Something went wrong.";
+      messageBox.style.color = "red";
+    }
+  });
+</script>
+
+<%- include("partials/footer.ejs") %>

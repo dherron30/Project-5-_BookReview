@@ -1,0 +1,50 @@
+<%- include('partials/header.ejs') %>
+
+  <!-- Banner Image -->
+ <!-- <img src="/assets/images/Book Club.png" alt="Book Club Banner" class="img-fluid w-100 mb-5" /> -->
+
+<!-- Welcome Section -->
+<div class="container col-xxl-8 px-4 py-5">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+    <!-- Right Side Image -->
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img src="/assets/images/japanesebestsellers.png" class="banner" alt="Books" width="600" height="600" loading="lazy">
+    </div>
+
+    <!-- Left Side Text -->
+    <div class="col-lg-6">
+      <h1 class="display-5 fw-bold lh-1 mb-3">Welcome to Danielle's Book Review</h1>
+      <p class="lead">
+        Lately, I’ve had a hard time getting into books. I’ll start one, lose interest, and move on. But every once in a while, I find a book I can’t put down and end up binge-reading it in a day or two—that’s when I know it’s a good one. You know that feeling when you’re still thinking about the characters days later, wishing you could live in their world, or hoping the author wrote more—sequels, prequels, anything? That’s the kind of book I’m here to talk about. This is where I’ll share the ones that really stuck with me.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Book Review Cards Section -->
+<div class="container py-5">
+  <div class="row g-4">
+    <% books.forEach(book => { %>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img
+          src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg?default=false"
+          alt="Cover of <%= book.title %>"
+          class="card-img-top"
+          onerror="this.onerror=null; this.src='/assets/images/placeholder-cover.png';"
+          />
+
+          <div class="card-body">
+            <h5 class="card-title"><%= book.title %></h5>
+            <p class="card-text">By <%= book.author %></p>
+            <p class="card-description">By <%= book.description %></p>
+            <p class="card-rating"><%= book.rating %> /10</p>
+            <a href="/books/<%= book.id %>" class="btn btn-primary">Read my review</a>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<%- include('partials/footer.ejs') %>

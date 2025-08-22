@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+
+<main class="container py-5">
+  <h1><%= book.title %></h1>
+  <p><strong>By:</strong> <%= book.author %></p>
+  <p><strong>Rating:</strong> <%= book.rating %> / 10</p>
+  <hr>
+  <h3>Review:</h3>
+  <p><%= book.review %></p>
+   <img class="bookCover"
+          src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg?default=false"
+          alt="Cover of <%= book.title %>"
+          class="card-img-top"
+          onerror="this.onerror=null; this.src='/assets/images/placeholder-cover.png';"
+          />
+</main>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,155 @@
+body {
+    background-color: #98785b;
+}
+
+.circle-wrapper {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.circle-wrapper img {
+  width: 100%;
+  height: auto;
+}
+
+.harrypotter {
+  height: 400px;
+  width: 400px;
+  object-fit:cover;
+  align-items: flex-end;
+}
+.about-flex-container {
+  display: flex;
+  align-items: flex-start; /* Align both at the top */
+  gap: 1rem;               /* Space between text and image */
+}
+
+.about-text {
+  flex: 1;                 /* Allow text to take remaining space */
+}
+
+.harrypotter-flex {
+  width: 300px;
+  height: auto;
+  flex-shrink: 0;          /* Prevent image from shrinking */
+}
+/* Basic reset for consistent layout */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive banner styles */
+.banner {
+  display: block;               /* Ensures predictable layout behavior */
+  width: 100%;
+  height: auto;
+  object-fit: cover;            /* Maintains aspect ratio, crops if needed */
+}
+
+/* Optional: Use aspect-ratio for precise control */
+.banner-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;         /* Adjust as needed for your banner's ratio */
+  overflow: hidden;
+}
+
+.banner-container .banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Container Styling */
+
+main.container {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Headings */
+.about {
+  font-family: 'Georgia', serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: whitesmoke;
+  margin-bottom: 1rem;
+}
+
+.intro {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.25rem;
+  color: #b4b4b5;
+  margin-bottom: 2rem;
+}
+
+.bookCover {
+  justify-content: flex-end;
+}
+
+/* Lists */
+ul {
+  font-size: 1.1rem;
+  color: #b4b4b5;
+  line-height: 1.6;
+}
+/* Books review form styles  */
+.blog-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+h1, h2 {
+  text-align: center;
+  color: white;
+  justify-content: center;
+}
+form {
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: gray;
+  border-radius: 6px;
+}
+
+form input,
+form textarea,
+form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1em;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
+/*Message when the post was successful*/
+#statusMessage {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 1.1em;
+}
