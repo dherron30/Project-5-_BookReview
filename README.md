@@ -1,5 +1,5 @@
 # Project-5-_BookReview
-WebsiteUsingPostgresSQLandAPI
+WebsiteUsingPostgresSQLand Open Library API to use images of books
 
 To view website do the following in the bash command line
 
