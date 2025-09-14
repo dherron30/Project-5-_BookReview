@@ -1,16 +1,18 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import dotenv from 'dotenv'; 
+dotenv.config();
 
 const app = express();
 const port = 3000;
 
 const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "project",
-  password: "Lexielou25$",
-  port: 5432,
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: parseInt(process.env.PG_PORT),
 });
 
 db.connect();
@@ -25,7 +27,7 @@ app.use(express.json()); // Built-in middleware to parse JSON
 app.use(express.urlencoded({ extended: true })); // Built-in middleware to parse URL-encoded data
 
 
-
+//JSON 
 let books = [
     {id: 1, author: "Michiko Aoyama", title:"What you are looking for is in the library", date_read: "2025-04-24", rating: 10},
     {id: 2, author: "Santa Montefiore", title:"Shadows in the Moonlight", date_read: "2025-04-15",rating: 10},
