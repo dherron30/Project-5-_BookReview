@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const db = new pg.Client({
   user: process.env.PG_USER,
@@ -33,6 +33,8 @@ let books = [
     {id: 2, author: "Santa Montefiore", title:"Shadows in the Moonlight", date_read: "2025-04-15",rating: 10},
     {id: 3, author: "Sheila OFlannagan", title:"The Woman on the bridge", date_read: "2025-04-18", rating: 9},
 ];
+
+app.get("/", (req, res) => res.send("App is running!"));
 
 app.get("/books", async (req,res) => {
     try {
@@ -168,5 +170,5 @@ app.delete("/books/:id", async (req, res) => {
 
 // Listening and connecting to port 3000
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
