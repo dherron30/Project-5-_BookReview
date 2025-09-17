@@ -41,7 +41,16 @@ let books = [
     {id: 3, author: "Sheila OFlannagan", title:"The Woman on the bridge", date_read: "2025-04-18", rating: 9},
 ];
 
-app.get("/", (req, res) => res.send("App is running!"));
+app.get("/", async (req, res) => {
+  try {
+    const result = await db.query("SELECT * FROM books ORDER BY id ASC");
+    const books = result.rows;
+    res.render("index.ejs", { books });
+  } catch (err) {
+    console.error("Error loading homepage:", err);
+    res.status(500).send("Error loading homepage");
+  }
+});
 
 app.get("/books", async (req,res) => {
     try {
@@ -83,22 +92,6 @@ app.get("/books/:id", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
-  }
-});
-
-
-// Dynamic route to show review for a given book ID
-app.get('/books/:id', async (req, res) => {
-  const bookId = req.params.id;
-  try {
-    const result = await db.query('SELECT * FROM books WHERE id = $1', [bookId]);
-    const book = result.rows[0];
-    if (!book) return res.status(404).render('not-found', { id: bookId });
-
-    res.render('review', { book });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Server Error');
   }
 });
 
